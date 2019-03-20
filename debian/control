@@ -1,0 +1,12 @@
+Source: ros-melodic-lex-node
+Section: misc
+Priority: extra
+Maintainer: AWS RoboMaker <ros-contributions@amazon.com>
+Build-Depends: debhelper (>= 9.0.0), ros-melodic-aws-common, ros-melodic-aws-ros1-common, ros-melodic-catkin, ros-melodic-lex-common-msgs, ros-melodic-roscpp, ros-melodic-rostest, ros-melodic-std-msgs
+Homepage: http://wiki.ros.org/lex_node
+Standards-Version: 3.9.2
+
+Package: ros-melodic-lex-node
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-melodic-aws-common, ros-melodic-aws-ros1-common, ros-melodic-lex-common-msgs, ros-melodic-roscpp, ros-melodic-std-msgs
+Description: Package providing a ROS node for interacting with Amazon Lex
