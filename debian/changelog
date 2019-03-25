@@ -1,0 +1,8 @@
+ros-kinetic-lex-common-msgs (2.0.0-1xenial) xenial; urgency=high
+
+  * Update package.xml
+  * Contributors: AAlon
+
+ -- AWS RoboMaker <ros-contributions@amazon.com>  Wed, 20 Mar 2019 00:00:00 -0000
+
+
