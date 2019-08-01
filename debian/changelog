@@ -1,0 +1,10 @@
+ros-melodic-lex-common-msgs (2.0.1-1bionic) bionic; urgency=high
+
+  * increment patch version (#25 <https://github.com/aws-robotics/lex-ros1/issues/25>)
+    Signed-off-by: Miaofei <mailto:miaofei@amazon.com>
+  * Update package.xml
+  * Contributors: AAlon, M. M
+
+ -- AWS RoboMaker <ros-contributions@amazon.com>  Thu, 01 Aug 2019 07:00:00 -0000
+
+
