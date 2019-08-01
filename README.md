@@ -22,11 +22,13 @@ The source code is released under an [Apache 2.0].
 - Melodic
 
 ### Build status
+* Travis CI:
+    * "master" branch [![Build Status](https://travis-ci.org/aws-robotics/lex-ros1.svg?branch=master)](https://travis-ci.org/aws-robotics/lex-ros1/branches)
+    * "release-latest" branch [![Build Status](https://travis-ci.org/aws-robotics/lex-ros1.svg?branch=release-latest)](https://travis-ci.org/aws-robotics/lex-ros1/branches)
+* ROS build farm:
+    * ROS Kinetic @ u16.04 Xenial [![Build Status](http://build.ros.org/job/Kbin_uX64__lex_node__ubuntu_xenial_amd64__binary/badge/icon)](http://build.ros.org/job/Kbin_uX64__lex_node__ubuntu_xenial_amd64__binary)
+    * ROS Melodic @ u18.04 Bionic [![Build Status](http://build.ros.org/job/Mbin_uB64__lex_node__ubuntu_bionic_amd64__binary/badge/icon)](http://build.ros.org/job/Mbin_uB64__lex_node__ubuntu_bionic_amd64__binary)
 
-* Travis CI: [![Build Status](https://travis-ci.org/aws-robotics/lex-ros1.svg?branch=master)](https://travis-ci.org/aws-robotics/lex-ros1)
- * ROS build farm:
-   * v1.0.0:
-     * ROS Kinetic @ u16.04 Xenial [![Build Status](http://build.ros.org/job/Kbin_uX64__lex_node__ubuntu_xenial_amd64__binary/badge/icon)](http://build.ros.org/job/Kbin_uX64__lex_node__ubuntu_xenial_amd64__binary)
 
 ## Installation
 
@@ -40,7 +42,7 @@ This node requires an IAM User with the following permission policy:
 On Ubuntu you can install the latest version of this package using the following command
 
         sudo apt-get update
-        sudo apt-get install -y ros-kinetic-lex-node
+        sudo apt-get install -y ros-$ROS_DISTRO-lex-node
 
 ### Building from Source
 
@@ -48,14 +50,12 @@ To build from source you'll need to create a new workspace, clone and checkout t
 
 - Create a ROS workspace and a source directory
 
-    mkdir -p ~/ros-workspace/src
+        mkdir -p ~/ros-workspace/src
 
 - Clone the package into the source directory . 
 
-_Note: Replace __`{MAJOR.VERSION}`__ below with the latest major version number to get the latest release branch._
-
         cd ~/ros-workspace/src
-        git clone https://github.com/aws-robotics/lex-ros1.git -b release-v{MAJOR.VERSION}
+        git clone https://github.com/aws-robotics/lex-ros1.git -b release-latest
 
 - Install dependencies
 
