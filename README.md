@@ -1,5 +1,6 @@
 # lex_node
 
+**Note: this repository is under active development. The package provided here is a release candidate; the API may change without notice and no support is provided for it at the moment.**
 
 ## Overview
 The ROS `lex_node` node enables a robot to comprehend natural language commands by voice or textual input and respond through a set of actions, which an AWS Lex Bot maps to ROS messages. Out of the box this node provides a ROS interface to communicate with a specified Amazon Lex bot (configured via lex_config.yaml) and requires configuration of AWS credentials. The Amazon Lex bot needs to be defined with responses and slots for customer prompts. A set of default slots and mappings are demonstrated in the [sample app] and include actions as “Create <location_name>,” “Go to <location_name>” and “Stop.” Additional guides on configuring bots with are available at [Getting Started with Amazon Lex].
@@ -18,17 +19,11 @@ The source code is released under an [Apache 2.0].
 **Maintainer**: AWS RoboMaker, ros-contributions@amazon.com
 
 ### Supported ROS Distributions
-- Kinetic
-- Melodic
+- Crystal 
 
 ### Build status
-* Travis CI:
-    * "master" branch [![Build Status](https://travis-ci.org/aws-robotics/lex-ros1.svg?branch=master)](https://travis-ci.org/aws-robotics/lex-ros1/branches)
-    * "release-latest" branch [![Build Status](https://travis-ci.org/aws-robotics/lex-ros1.svg?branch=release-latest)](https://travis-ci.org/aws-robotics/lex-ros1/branches)
-* ROS build farm:
-    * ROS Kinetic @ u16.04 Xenial [![Build Status](http://build.ros.org/job/Kbin_uX64__lex_node__ubuntu_xenial_amd64__binary/badge/icon)](http://build.ros.org/job/Kbin_uX64__lex_node__ubuntu_xenial_amd64__binary)
-    * ROS Melodic @ u18.04 Bionic [![Build Status](http://build.ros.org/job/Mbin_uB64__lex_node__ubuntu_bionic_amd64__binary/badge/icon)](http://build.ros.org/job/Mbin_uB64__lex_node__ubuntu_bionic_amd64__binary)
 
+@TODO: build status
 
 ## Installation
 
@@ -42,7 +37,7 @@ This node requires an IAM User with the following permission policy:
 On Ubuntu you can install the latest version of this package using the following command
 
         sudo apt-get update
-        sudo apt-get install -y ros-$ROS_DISTRO-lex-node
+        sudo apt-get install -y ros-crystal-lex-node
 
 ### Building from Source
 
@@ -50,12 +45,14 @@ To build from source you'll need to create a new workspace, clone and checkout t
 
 - Create a ROS workspace and a source directory
 
-        mkdir -p ~/ros-workspace/src
+    mkdir -p ~/ros-workspace/src
 
 - Clone the package into the source directory . 
 
+_Note: Replace __`{MAJOR.VERSION}`__ below with the latest major version number to get the latest release branch._
+
         cd ~/ros-workspace/src
-        git clone https://github.com/aws-robotics/lex-ros1.git -b release-latest
+        git clone https://github.com/aws-robotics/lex-ros2.git -b release-v{MAJOR.VERSION}
 
 - Install dependencies
 
@@ -81,8 +78,7 @@ _Note: If building the master branch instead of a release branch you may need to
 
 
 ## Launch Files
-An example launch file called `sample_application.launch` is provided.
-
+An example launch file called `lex_node.launch.py` is provided.
 
 ## Usage
 
@@ -94,10 +90,10 @@ An example launch file called `sample_application.launch` is provided.
 
 ### Run the node
 - **With** launch file using parameters in .yaml format (example provided)
-  - ROS: `roslaunch lex_node sample_application.launch`
+  - ROS: `ros2 launch lex_node lex.launch.py`
 
 ### Send a test voice message 
-    `rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'make a reservation', audio_request: {data: ''}}"`
+    `ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'make a reservation', audio_request: ''}"`
 
 ### Verify the test voice was received
 - Receive response from Amazon Lex and continue conversation
@@ -144,14 +140,13 @@ We evaluated the performance of this node by runnning the followning scenario on
 - Launch the ROS `lex_node` using the launch file `lex_node.launch` as described above. At the same time, make calls to the `/lex_node/lex_conversation` service by running the following script in the background: 
 
 ```bash
-rosservice call /lex_node/set_logger_level "{logger: 'ros.lex_node', level: 'debug'}" 
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Make a reservation', audio_request: {data: ''}}" && sleep 1
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Seattle, WA', audio_request: {data: ''}}" && sleep 1
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Tomorrow', audio_request: {data: ''}}" && sleep 1
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Next Monday', audio_request: {data: ''}}" && sleep 1
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: '40', audio_request: {data: ''}}" && sleep 1
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'economy', audio_request: {data: ''}}" && sleep 1 
-rosservice call /lex_node/lex_conversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'yes', audio_request: {data: ''}}"
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Make a reservation', audio_request: ''}" && sleep 1
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Seattle, WA', audio_request: ''}" && sleep 1
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Tomorrow', audio_request: ''}" && sleep 1
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'Next Monday', audio_request: ''}" && sleep 1
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: '40', audio_request: ''}" && sleep 1
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'economy', audio_request: ''}" && sleep 1 
+ros2 service call /lex_conversation lex_common_msgs/AudioTextConversation "{content_type: 'text/plain; charset=utf-8', accept_type: 'text/plain; charset=utf-8', text_request: 'yes', audio_request: ''}"
 ```
 
 - Allow the nodes to run for 180 seconds. 
@@ -213,6 +208,6 @@ Please report bugs in [Issue Tracker].
 [AWS Configuration and Credential Files]: https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
 [aws-sdk-c++]: https://github.com/aws/aws-sdk-cpp
 [Getting Started with Amazon Lex]: https://docs.aws.amazon.com/lex/latest/dg/getting-started.html
-[Issue Tracker]: https://github.com/aws-robotics/lex-ros1/issues
+[Issue Tracker]: https://github.com/aws-robotics/lex-ros2/issues
 [ROS]: http://www.ros.org
 [sample app]: https://github.com/aws/aws-robomaker-sample-application-voiceinteraction

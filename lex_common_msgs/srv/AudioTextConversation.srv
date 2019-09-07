@@ -3,11 +3,14 @@ string content_type
 string accept_type
 string text_request
 # used audio data for convenience to work with audio_common
-audio_common_msgs/AudioData audio_request
+uint8[] audio_request
 ---
 string text_response
-audio_common_msgs/AudioData audio_response
-lex_common_msgs/KeyValue[] slots
+uint8[] audio_response
+KeyValue[] slots
 string intent_name
 string message_format_type
 string dialog_state
+
+uint8 error_code
+string error_message
