@@ -1,0 +1,12 @@
+Source: ros-dashing-lex-node
+Section: misc
+Priority: extra
+Maintainer: AWS RoboMaker <ros-contributions@amazon.com>
+Build-Depends: debhelper (>= 9.0.0), ros-dashing-ament-cmake, ros-dashing-ament-cmake-gmock, ros-dashing-ament-lint-auto, ros-dashing-ament-lint-common, ros-dashing-aws-common (>= 2.0.0), ros-dashing-aws-ros2-common, ros-dashing-lex-common (>= 1.0.0), ros-dashing-lex-common-msgs, ros-dashing-rclcpp, ros-dashing-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-dashing-lex-node
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-dashing-aws-common (>= 2.0.0), ros-dashing-aws-ros2-common, ros-dashing-launch, ros-dashing-launch-ros, ros-dashing-lex-common (>= 1.0.0), ros-dashing-lex-common-msgs, ros-dashing-rclcpp, ros-dashing-ros-workspace
+Description: Package providing a ROS node for interacting with Amazon Lex
