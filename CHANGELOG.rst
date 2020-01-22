@@ -2,8 +2,13 @@
 Changelog for package lex_node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.0.1 (2019-08-01)
+2.0.2 (2020-01-22)
 ------------------
+* Update lex_common_msgs and lex_node versions to 2.0.2 (`#30 <https://github.com/aws-robotics/lex-ros1/issues/30>`_)
+* Refactor to make use of lex-common package (`#28 <https://github.com/aws-robotics/lex-ros1/issues/28>`_)
+  * Refactor common components of lex-ros1 into lex-common
+  * fix missing header file compilation error
+  Signed-off-by: Miaofei <miaofei@amazon.com>
 * increment patch version (`#25 <https://github.com/aws-robotics/lex-ros1/issues/25>`_)
   Signed-off-by: Miaofei <miaofei@amazon.com>
 * Add gtest and gmock as test dependencies (`#17 <https://github.com/aws-robotics/lex-ros1/issues/17>`_)
@@ -25,4 +30,4 @@ Changelog for package lex_node
   * update lex_node_test.cpp to conform to the new ParameterReader API
   * update lex_node to be compatible with newer aws sdk
   * use master branch for cloud extension dependencies
-* Contributors: AAlon, M. M, Ross Desmond
+* Contributors: AAlon, M. M, Ross Desmond, Ryan Newell
