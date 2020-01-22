@@ -1,3 +1,28 @@
+## lex_node (kinetic) - 2.0.2-1
+
+The packages in the `lex_node` repository were released into the `kinetic` distro by running `/usr/local/bin/bloom-release lex_node --track kinetic --rosdistro kinetic -e` on `Wed, 22 Jan 2020 22:31:29 -0000`
+
+These packages were released:
+- `lex_common_msgs`
+- `lex_node`
+
+Version of package(s) in repository `lex_node`:
+
+- upstream repository: https://github.com/aws-robotics/lex-ros1.git
+- release repository: https://github.com/aws-gbp/lex_node-release.git
+- rosdistro version: `2.0.1-1`
+- old version: `2.0.1-1`
+- new version: `2.0.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.9`
+- rosdep version: `0.15.1`
+- rosdistro version: `0.7.2`
+- vcstools version: `0.1.40`
+
+
 ## lex_node (dashing) - 3.1.0-1
 
 The packages in the `lex_node` repository were released into the `dashing` distro by running `/usr/local/bin/bloom-release lex_node --track dashing --rosdistro dashing -e` on `Fri, 01 Nov 2019 17:05:54 -0000`
