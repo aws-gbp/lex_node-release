@@ -2,24 +2,14 @@
 Changelog for package lex_common_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0 (2019-11-01)
+2.0.2 (2020-01-22)
 ------------------
-* 3.1.0
-* Contributors: ryanewel
-
-3.0.0 (2019-09-06)
-------------------
-* Merge pull request `#5 <https://github.com/aws-robotics/lex-ros2/issues/5>`_ from aws-robotics/version-bump
-  Bump to version 3.0.0
-* Bump to version 3.0.0
-* Add missing dependency on ament_lint_auto
-* Merge pull request `#1 <https://github.com/aws-robotics/lex-ros2/issues/1>`_ from aws-robotics/lex-dev
-  Add lex ros2 implementation
-* Add lex ros2 implementation
-  **Summary**
-  Creates readme for how to build lex ros2
-  * ament_uncrustify reformat code
-  * ament_cpplint formatting changes
-  **Tests**
-  Unit Tests
-* Contributors: AAlon, M M, M. M, Ross Desmond
+* Update lex_common_msgs and lex_node versions to 2.0.2 (`#30 <https://github.com/aws-robotics/lex-ros1/issues/30>`_)
+* Refactor to make use of lex-common package (`#28 <https://github.com/aws-robotics/lex-ros1/issues/28>`_)
+  * Refactor common components of lex-ros1 into lex-common
+  * fix missing header file compilation error
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+* increment patch version (`#25 <https://github.com/aws-robotics/lex-ros1/issues/25>`_)
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+* Update package.xml
+* Contributors: AAlon, M. M, Ryan Newell

@@ -1,35 +1,25 @@
 <?xml version="1.0"?>
-<package format="3">
-    <name>lex_node</name>
-    <version>3.1.0</version>
-    <description>Package providing a ROS node for interacting with Amazon Lex</description>
+<package format="2">
+  <name>lex_node</name>
+  <version>2.0.2</version>
+  <description>Package providing a ROS node for interacting with Amazon Lex</description>
+  <url>http://wiki.ros.org/lex_node</url>
 
-    <author email="ros-contributions@amazon.com">AWS RoboMaker</author>
-    <maintainer email="ros-contributions@amazon.com">AWS RoboMaker</maintainer>
+  <author email="ros-contributions@amazon.com">AWS RoboMaker</author>
+  <maintainer email="ros-contributions@amazon.com">AWS RoboMaker</maintainer>
 
-    <license>Apache 2.0</license>
+  <license>Apache 2.0</license>
 
-    <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>catkin</buildtool_depend>
 
-    <depend version_gte="2.0.0">aws_common</depend>
-    <depend version_gte="1.0.0">lex_common</depend>
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>lex_common</depend>
+  <depend>lex_common_msgs</depend>
+  <depend>aws_common</depend>
+  <depend>aws_ros1_common</depend>
 
-    <build_depend>rclcpp</build_depend>
-    <build_depend>lex_common_msgs</build_depend>
-    <build_depend>aws_ros2_common</build_depend>
-
-    <exec_depend>launch_ros</exec_depend>
-    <exec_depend>launch</exec_depend>
-    <exec_depend>rclcpp</exec_depend>
-    <exec_depend>lex_common_msgs</exec_depend>
-    <exec_depend>aws_ros2_common</exec_depend>
-    <exec_depend>python3-yaml</exec_depend>
-
-    <test_depend>ament_cmake_gmock</test_depend>
-    <test_depend>ament_lint_common</test_depend>
-    <test_depend>ament_lint_auto</test_depend>
-
-    <export>
-        <build_type>ament_cmake</build_type>
-    </export>
+  <test_depend>gtest</test_depend>
+  <test_depend>google-mock</test_depend>
+  <test_depend>rostest</test_depend>
 </package>

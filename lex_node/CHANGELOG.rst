@@ -2,49 +2,32 @@
 Changelog for package lex_node
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-3.1.0 (2019-11-01)
+2.0.2 (2020-01-22)
 ------------------
-* Merge pull request `#9 <https://github.com/aws-robotics/lex-ros2/issues/9>`_ from aws-robotics/bump-version
-  3.1.0
-* 3.1.0
-* Merge pull request `#8 <https://github.com/aws-robotics/lex-ros2/issues/8>`_ from aws-robotics/add-region-userid
-  Allow setting region or user_id from env var or param
-* Allow setting region or user_id from env var or param
-  - Allow launching this node with a specific aws region or user_id by
-  setting ROS_AWS_REGION or LEX_USER_ID or passing them as parameters to
-  the launch file.
-* Merge pull request `#7 <https://github.com/aws-robotics/lex-ros2/issues/7>`_ from aws-robotics/allow-config-change
-  Allow specifying config_file and node_name
-* Make logging stream to stdout in code instead of env var
-  - This is how the ros2/demos samples ensure that logs stream to stdout
-  instead of buffering. Doing it this way will be more reliable than
-  setting the env var in the launch file.
-* Allow specifying config_file and node_name
-  - Add parameters to allow the user of this node to specify their own
-  config file and node name.
-* Contributors: Tim Robinson
-
-3.0.0 (2019-09-06)
-------------------
-* Merge pull request `#5 <https://github.com/aws-robotics/lex-ros2/issues/5>`_ from aws-robotics/version-bump
-  Bump to version 3.0.0
-* Bump to version 3.0.0
-* Add launch dependencies
-* Allow undeclared parameters
-* Disable linting as a temporary measure
-* Add missing lint dependencies
-* Change ament_cmake_ros to ament_cmake
-* Add test depend on ament_cmake_gmock
-* Merge pull request `#1 <https://github.com/aws-robotics/lex-ros2/issues/1>`_ from aws-robotics/lex-dev
-  Add lex ros2 implementation
-* Add gmock dependencies and reduce package version
-* Remove unnecessary launch file
-  Also deletes unnecessary gtest init, gmock init takes care of it.
-* Add lex ros2 implementation
-  **Summary**
-  Creates readme for how to build lex ros2
-  * ament_uncrustify reformat code
-  * ament_cpplint formatting changes
-  **Tests**
-  Unit Tests
-* Contributors: AAlon, Avishay Alon, M M, M. M, Ross Desmond
+* Update lex_common_msgs and lex_node versions to 2.0.2 (`#30 <https://github.com/aws-robotics/lex-ros1/issues/30>`_)
+* Refactor to make use of lex-common package (`#28 <https://github.com/aws-robotics/lex-ros1/issues/28>`_)
+  * Refactor common components of lex-ros1 into lex-common
+  * fix missing header file compilation error
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+* increment patch version (`#25 <https://github.com/aws-robotics/lex-ros1/issues/25>`_)
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+* Add gtest and gmock as test dependencies (`#17 <https://github.com/aws-robotics/lex-ros1/issues/17>`_)
+  * Add gtest and gmock as test dependencies
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+  * modify lex_node to use add_rostest_gmock()
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+  * update travis.yml to be compatible with specifying multiple package names
+  Signed-off-by: Miaofei <miaofei@amazon.com>
+* Update to use non-legacy ParameterReader API (`#12 <https://github.com/aws-robotics/lex-ros1/issues/12>`_)
+* Update to use new ParameterReader API (`#10 <https://github.com/aws-robotics/lex-ros1/issues/10>`_)
+  * update lex_node_test to use the new ParameterReader API
+  * increment major version number in package.xml
+* Revert ParameterReader change (`#8 <https://github.com/aws-robotics/lex-ros1/issues/8>`_)
+  * Revert "Updating lex_node_test.cpp to conform to the new ParameterReader API (`#6 <https://github.com/aws-robotics/lex-ros1/issues/6>`_)"
+  This reverts commit 98b1fe112bcff0d01cf43620d17e4c956e3e9832.
+  https://github.com/aws-robotics/utils-common/issues/15
+* Updating lex_node_test.cpp to conform to the new ParameterReader API (`#6 <https://github.com/aws-robotics/lex-ros1/issues/6>`_)
+  * update lex_node_test.cpp to conform to the new ParameterReader API
+  * update lex_node to be compatible with newer aws sdk
+  * use master branch for cloud extension dependencies
+* Contributors: AAlon, M. M, Ross Desmond, Ryan Newell

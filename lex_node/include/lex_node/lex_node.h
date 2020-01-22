@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ * Copyright 2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License").
  * You may not use this file except in compliance with the License.
@@ -13,60 +13,61 @@
  * permissions and limitations under the License.
  */
 
-#ifndef LEX_NODE__LEX_NODE_H_
-#define LEX_NODE__LEX_NODE_H_
+#pragma once
 
 #include <aws/lex/LexRuntimeServiceClient.h>
-#include <lex_common_msgs/srv/audio_text_conversation.hpp>
-#include <lex_common/lex_param_helper.h>
+#include <lex_common_msgs/AudioTextConversation.h>
+#include <lex_common_msgs/AudioTextConversationRequest.h>
+#include <lex_common_msgs/AudioTextConversationResponse.h>
+
+#include <lex_common/error_codes.h>
 #include <lex_common/lex_common.h>
 
-#include <rclcpp/rclcpp.hpp>
+#include <ros/ros.h>
+#include <ros/spinner.h>
 
-#include <memory>
-
-namespace Aws
-{
-namespace Lex
-{
-
-class LexNode;
+namespace Aws {
+namespace Lex {
 
 /**
- * LexNode is responsible for providing ROS2 API's and configuration for Amazon Lex.
+ * LexNode is responsible for providing ROS API's and configuration for Amazon Lex.
  * The lex node will work on each incoming message serially and respond with the lex info.
  * @todo decide how the lex node will handle multiple requests.
  */
-class LexNode : public rclcpp::Node
+class LexNode
 {
 private:
+  /**
+   * The ros server for lex requests.
+   */
+  ros::ServiceServer lex_server_;
+
   /**
    * Post content function.
    */
   std::shared_ptr<PostContentInterface> post_content_;
 
   /**
-   * The ros server for lex requests.
+   * The ros node handle.
    */
-  std::shared_ptr<rclcpp::Service<lex_common_msgs::srv::AudioTextConversation>> lex_server_;
+  ros::NodeHandle node_handle_;
 
   /**
-   * Service callback for lex. Only allow one interaction with Lex at a time. If a new request comes in,
-   * fail the last request, then make a new request.
+   * Service callback for lex. Only allow one interaction with Lex at a time. If a new request comes
+   * in, fail the last request, then make a new request.
    *
    * @param request to handle
    * @param response to fill
+   * @return true if the service request was successful
    */
-  void LexServerCallback(
-    std::shared_ptr<rmw_request_id_t> request_header,
-    std::shared_ptr<lex_common_msgs::srv::AudioTextConversation::Request> request,
-    std::shared_ptr<lex_common_msgs::srv::AudioTextConversation::Response> response);
+    bool LexServerCallback(lex_common_msgs::AudioTextConversationRequest & request,
+                           lex_common_msgs::AudioTextConversationResponse & response);
 
 public:
   /**
    * Constructor.
    */
-  LexNode(rclcpp::NodeOptions node_options = rclcpp::NodeOptions());
+  LexNode();
 
   /**
    * Destructor.
@@ -76,13 +77,17 @@ public:
   /**
    * Initialize the lex node.
    *
-   * @param post_content interface to post the lex callbacks to
-   * @return SUCCESS if initialized properly
+   * @param lex_interactor to use as the method to call lex.
    */
-  ErrorCode Init(std::shared_ptr<PostContentInterface> post_content);
+  ErrorCode Init(std::shared_ptr<PostContentInterface> lex_interactor);
+
+  /**
+   * Conversion function since in ROS2, this class will inherit from Node.
+   *
+   * @return this functions node handle.
+   */
+  explicit operator ros::NodeHandle &() { return node_handle_; }
 };
 
 }  // namespace Lex
 }  // namespace Aws
-
-#endif  // LEX_NODE__LEX_NODE_H_
