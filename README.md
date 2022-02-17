@@ -1,3 +1,28 @@
+## lex_node (melodic) - 2.0.3-1
+
+The packages in the `lex_node` repository were released into the `melodic` distro by running `/usr/local/bin/bloom-release lex_node --track melodic --rosdistro melodic -e` on `Thu, 17 Feb 2022 05:59:45 -0000`
+
+These packages were released:
+- `lex_common_msgs`
+- `lex_node`
+
+Version of package(s) in repository `lex_node`:
+
+- upstream repository: https://github.com/jikawa-az/lex-ros1.git
+- release repository: https://github.com/aws-gbp/lex_node-release.git
+- rosdistro version: `2.0.2-1`
+- old version: `2.0.2-1`
+- new version: `2.0.3-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.23`
+- rosdep version: `0.20.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## lex_node (melodic) - 2.0.2-1
 
 The packages in the `lex_node` repository were released into the `melodic` distro by running `/usr/local/bin/bloom-release lex_node --track melodic --rosdistro melodic -e` on `Wed, 22 Jan 2020 22:35:43 -0000`
